@@ -10,6 +10,8 @@ const fs = require('fs');
 const cheerio = require('cheerio');
 const axios = require('axios');
 const mkdirp = require('mkdirp');
+const request = require('request');
+const rp = require('request-promise');
 
 
 //爬虫配置--地址等...
@@ -83,22 +85,17 @@ let spiderfun = async () => {
 
 
   //保存图片
-    resultjson.forEach(async (val,index,array)=>{
+    resultjson.forEach(async(val,index,array)=>{
       console.log(val.pic);
       let picdir = newdir+ '/pic';
       let picname = path.parse(val.pic).base;
 
       console.log(picname);
-      let pic = await axios.get(val.pic);
+      let pic = await rp(val.pic);
+      let picwrite = fs.createWriteStream(picdir+'/'+picname);
+      picwrite.write(pic);
+      picwrite.end();
 
-      let ws = fs.createWriteStream(picdir+'/'+picname,{
-            defaultEncoding:'utf8',
-            fd: null,
-            mode: 0o666,
-            autoClose: true
-        });
-      ws.write(pic.data);
-      ws.end();
 
       console.log('图片下载成功')
     })

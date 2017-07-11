@@ -4,7 +4,9 @@
   "description": "A cheerio spider project",
   "main": "index.js",
   "scripts": {
-    "dev": "node index.js"
+    "dev": "node index.js",
+    "request": "node request.js",
+    "rp": "node rp.js"
   },
   "repository": {
     "type": "git",
@@ -24,9 +26,12 @@
     "babel-preset-stage-3": "^6.11.0",
     "cheerio": "^0.20.0",
     "colors": "^1.1.2",
+    "form-data": "^2.2.0",
     "fs": "^0.0.2",
     "mkdirp": "^0.5.1",
     "path": "^0.12.7",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
     "url": "^0.11.0"
   },
   "homepage": "https://github.com/darklordli/cheerio-spider#readme"
